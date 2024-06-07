@@ -1,4 +1,5 @@
 import { Match, Show, Switch, createResource, type Component } from "solid-js";
+import { getArtistsInfo } from "./lib/musicbrainz";
 import { getPlaylistArtists } from "./lib/spotify";
 
 interface Props {
@@ -7,7 +8,7 @@ interface Props {
 
 const Content: Component<Props> = ({ token }) => {
   let [playlistArtistsRes] = createResource(async () => {
-    return await getPlaylistArtists(token);
+    return await getArtistsInfo(await getPlaylistArtists(token));
   });
 
   return (
